@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlatformEventSubscriberConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+	<platformEventConsumer>aef_AsyncWorkerEventTrigger</platformEventConsumer>
+	<batchSize>2000</batchSize>
+	<masterLabel>Async Worker Event Trigger Config</masterLabel>
+	<user>[your scratch org username]</user>
+	<isProtected>false</isProtected>
+</PlatformEventSubscriberConfig>

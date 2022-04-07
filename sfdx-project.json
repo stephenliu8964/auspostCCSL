@@ -1,0 +1,24 @@
+{
+	"packageDirectories": [
+		{
+			"path": "src/object-model"
+		},
+		{
+			"path": "src/framework"
+		},
+		{
+			"path": "src-access-management"
+		},
+		{
+			"path": "force-app",
+			"default": true
+		}
+	],
+	"name": "enterprise-async-framework",
+	"namespace": "",
+	"sfdcLoginUrl": "https://login.salesforce.com",
+	"sourceApiVersion": "54.0",
+	"packageAliases": {
+		"dxatscale-base": "04t6F000001ZL7yQAG"
+	}
+}
