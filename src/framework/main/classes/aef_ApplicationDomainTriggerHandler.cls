@@ -126,13 +126,7 @@ public abstract inherited sharing class aef_ApplicationDomainTriggerHandler {
 
 		List<aef_ApplicationDomain> instances = new List<aef_ApplicationDomain>();
 		for(Type domainType : domains) {
-
-			// Construct the domain class constructor class
-			String domainClassName = domainType.getName();
-			Type constructableClass = Type.forName(domainClassName + '.Constructor');
-			aef_ApplicationDomain.IConstructable domainConstructor = (aef_ApplicationDomain.IConstructable) constructableClass.newInstance();
-			instances.add(domainConstructor.construct(newRecords));
-
+			instances.add(aef_ApplicationDomain.newInstance(domainType, newRecords));
 		}
 
 		return instances;

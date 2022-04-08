@@ -56,6 +56,10 @@ public virtual inherited sharing class aef_ApplicationDomain {
 		return domain;
 	}
 
+	public static Module newModuleInstance(Type moduleType) {
+		return (Module)aef_Application.Utilities.newInstance(moduleType);
+	}
+
 	/**
 	 * TODO
 	 **/
@@ -69,11 +73,16 @@ public virtual inherited sharing class aef_ApplicationDomain {
 
 	/**
 	 * Grab the name of the class for various actions. Since Apex does not provide class Reflection then it's necessary to use this in order to know what the name of the most subclassed class is.
+	 * Domains should implement IHasClassType, but if they don't, the fallback is to use this method
 	 */
 	public String className {
 		get {
 			if(String.isEmpty(className)) {
-				className = String.valueOf(this).substringBefore(':');
+				if(this instanceof IHasClassType) {
+					className = String.valueOf(((IHasClassType)(this)).getClassType());
+				} else {
+					className = String.valueOf(this).substringBefore(':');
+				}
 			}
 			return className;
 		}
@@ -169,11 +178,8 @@ public virtual inherited sharing class aef_ApplicationDomain {
 			cachedModules.put(thisClass, new Map<Type, Object>());
 		}
 		if (cachedModules.get(thisClass).get(moduleClass) == null) {
-			// Construct the module class constructor class
-			String moduleClassName = moduleClass.getName();
-			Type constructableClass = Type.forName(moduleClassName + '.Constructor');
-			IConstructableModule moduleConstructor = (IConstructableModule)constructableClass.newInstance();
-			cachedModules.get(thisClass).put(moduleClass, moduleConstructor.construct());
+			// Construct the module
+			cachedModules.get(thisClass).put(moduleClass, newModuleInstance(moduleClass));
 
 //          // TODO -> Link domain (if needed)
 //			// provide a link to the domain calling this module
@@ -352,20 +358,6 @@ public virtual inherited sharing class aef_ApplicationDomain {
 
 //		void setDomain(aef_ApplicationDomain domain);
 //		aef_ApplicationDomain getDomain();
-	}
-
-	/**
-	 * Interface used to aid the triggerHandler in constructing instances of Domain classes
-	 **/
-	public interface IConstructable {
-		aef_ApplicationDomain construct(List<SObject> sObjectList);
-	}
-
-	/**
-	 * Interface used to aid in constructing instances of Domain module classes
-	 **/
-	public interface IConstructableModule {
-		Module construct();
 	}
 
 	// returns an empty string

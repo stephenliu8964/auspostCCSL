@@ -3,13 +3,12 @@
  *
  * @description
  * This is an aef_ApplicationDomain for use in aef_ApplicationDomain_Test
- * This needed its own root class since it requires an inner type IConstructable
  *
  * @author Nathan Franklin
  * @changelog
  */
 @IsTest
-public class aef_ApplicationTestDomain1_Test extends aef_ApplicationDomain {
+public class aef_ApplicationTestDomain1_Test extends aef_ApplicationDomain implements IHasClassType {
 
 	// used to report back from the module which records where changed
 	public static Map<Id, Set<SObjectField>> moduleBeforeUpdateChangedValues;
@@ -30,6 +29,10 @@ public class aef_ApplicationTestDomain1_Test extends aef_ApplicationDomain {
 		registerModule(aef_ApplicationTestDomainModuleNone_Test.class);
 	}
 
+	public Type getClassType() {
+		return aef_ApplicationTestDomain1_Test.class;
+	}
+
 	public override List<SObject> filter(List<SObject> records) {
 		List<SObject> output = new List<SObject>();
 		for(SObject record : records) {
@@ -38,14 +41,5 @@ public class aef_ApplicationTestDomain1_Test extends aef_ApplicationDomain {
 			}
 		}
 		return output;
-	}
-
-	/**
-	 * Trigger instantiation context
-	 */
-	public virtual class Constructor implements aef_ApplicationDomain.IConstructable {
-		public aef_ApplicationDomain construct(List<SObject> sObjectList) {
-			return (aef_ApplicationTestDomain1_Test)aef_ApplicationDomain.newInstance(aef_ApplicationTestDomain1_Test.class, sObjectList);
-		}
 	}
 }

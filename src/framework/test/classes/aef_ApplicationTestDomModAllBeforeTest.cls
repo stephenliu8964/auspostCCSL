@@ -3,7 +3,6 @@
  *
  * @description
  * This is an aef_ApplicationDomain.Module for use in aef_ApplicationDomain_Test and aef_ApplicationDomainTriggerHandler_Test
- * This needed its own root class since it requires an inner type IConstructableModule
  *
  * @author Nathan Franklin
  * @changelog
@@ -37,14 +36,5 @@ public class aef_ApplicationTestDomModAllBeforeTest extends aef_ApplicationDomai
 
 	public override void onAfterDelete(List<SObject> records, aef_ApplicationUnitOfWork uow) {
 		aef_ApplicationTestDomain2_Test.moduleOnAfterDeleteCalled++;
-	}
-
-	/**
-	 * Module instantiation context. This allows us to dynamically instantiate this module within ApplicationModule
-	 */
-	public class Constructor implements aef_ApplicationDomain.IConstructableModule {
-		public aef_ApplicationDomain.Module construct() {
-			return new aef_ApplicationTestDomModAllBeforeTest();
-		}
 	}
 }
