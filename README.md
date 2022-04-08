@@ -29,7 +29,7 @@ Clone the repo: `git clone https://github.com/nathanfranklinau/sf-advanced-enter
 
 Create a scratch org: `sfdx force:org:create -f config/project-scratch-def.json -a [your scratch org alias] -v [dev hub org]`
 
-Clone & Push Apex Mocks: https://github.com/apex-enterprise-patterns 
+Clone & Push Apex Mocks: https://github.com/apex-enterprise-patterns/fflib-apex-mocks 
 OR Deploy: [<img src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">](https://githubsfdeploy.herokuapp.com?owner=apex-enterprise-patterns&repo=fflib-apex-mocks)
 
 Push Source: `sfdx force:source:push -u [scratch org alias]`
