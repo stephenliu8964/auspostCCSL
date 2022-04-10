@@ -138,8 +138,10 @@ public with sharing class aef_Application {
 		public void start(String key) {
 			profileMap.put(key, System.currentTimeMillis());
 		}
-		public void stop(String key) {
-			System.debug('Profiler Results: ' + key + ' ' + (System.currentTimeMillis() - profileMap.get(key)) + 'ms');
+		public Decimal stop(String key) {
+			Decimal timer = (System.currentTimeMillis() - profileMap.get(key));
+			System.debug('Profiler Results: ' + key + ' ' + timer + 'ms');
+			return timer;
 		}
 	}
 

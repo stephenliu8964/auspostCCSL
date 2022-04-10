@@ -210,7 +210,7 @@ public with sharing class aef_ApplicationUnitOfWorkAsyncHandler {
 	/**
 	 * Spawn queueables based on the work provided in asyncWorkers variable. This is built from the platform event handler
 	 * The exact number of ids will vary based on their group configuration and limits specified in
-	 *      MAX_QUEUEABLES_PER_PLATFORM_EVENT_ITERATION and MAX_GROUPED_ASYNC_WORKERS
+	 *	  MAX_QUEUEABLES_PER_PLATFORM_EVENT_ITERATION and MAX_GROUPED_ASYNC_WORKERS
 	 *
 	 * NOTE:
 	 * The method does not perform any grouping operations, it assumes the grouping is completed prior to calling this method, hence the List<List> input
@@ -388,7 +388,7 @@ public with sharing class aef_ApplicationUnitOfWorkAsyncHandler {
 			// increase the current stack depth IMMEDIATELY!
 			// track the stack depth and the stack so we can prevent an infinite loop
 			// NOTE: We only increase the stack depth if the current worker was not forced into the current context due to the stack depth being exceeded
-			//       ForcedIntoCurrentContext__c should only be populated when in aef_ApplicationUnitOfWork.doAsyncWork()
+			//	   ForcedIntoCurrentContext__c should only be populated when in aef_ApplicationUnitOfWork.doAsyncWork()
 			if (processableAsyncWorkerRecords[0].ForcedIntoCurrentContext__c != true) {
 				aef_ApplicationUnitOfWork.currentAsyncStackDepth = currentStackDepth + 1;
 			}
@@ -434,9 +434,9 @@ public with sharing class aef_ApplicationUnitOfWorkAsyncHandler {
 					// tells the Unit of Work to throw an exception when it detects a lock error. This is irrespective of any row level configuration (throwOnError config with registerNew, registerDirty etc...)
 					// we use this as a part of the retry capability in the 'catch' handler below
 					// NOTE: This is only done in the event of an async worker not requiring a callout.
-					//          Where a worker requires a callout, it's expected that the worker would manage this setting directly as needed!
-					//          This is needed since committing the uow is done outside of the workers execution context
-					//          REASONING: At times a worker performs a read callout which means it would be ok to re-run the worker, however in the event of a write, the retry logic may be undeseriable
+					//		  Where a worker requires a callout, it's expected that the worker would manage this setting directly as needed!
+					//		  This is needed since committing the uow is done outside of the workers execution context
+					//		  REASONING: At times a worker performs a read callout which means it would be ok to re-run the worker, however in the event of a write, the retry logic may be undeseriable
 
 					uow.throwLockErrors = true;
 				}
@@ -506,7 +506,7 @@ public with sharing class aef_ApplicationUnitOfWorkAsyncHandler {
 			} catch (Exception ex) {
 
 				// NOTE: We catch exceptions to log errors from the workers but also to check if there were lock errors which can be retried
-				//          This catches errors thrown from the worker itself (incase the work is doing direct dmls for example), or, from the UOW (commitWork)
+				//		  This catches errors thrown from the worker itself (incase the work is doing direct dmls for example), or, from the UOW (commitWork)
 				// when an exception occurs, we need to rollback all the database activity from the last save point
 				if (asyncWorker == null) {
 					// for whatever reason we did not get to the point of even instantiating a new worker.

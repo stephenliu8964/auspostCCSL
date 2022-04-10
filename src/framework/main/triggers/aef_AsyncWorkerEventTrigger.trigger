@@ -2,7 +2,7 @@
  * Copyright (c) 2022 - Nathan Franklin - All rights reserved
  *
  * @description Platform Event trigger exclusive async workers (a part of the unit of work framework)
- *              This passed work off to our handler that is responsible to spaning a queueable for each of these events
+ *			  This passed work off to our handler that is responsible to spaning a queueable for each of these events
  *
  * @author Nathan Franklin
  * @changelog

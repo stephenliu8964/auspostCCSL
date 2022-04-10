@@ -66,7 +66,7 @@ public abstract inherited sharing class aef_ApplicationDomainTriggerHandler {
 		for(aef_ApplicationDomain instance : instances) {
 			// TODO at some point
 			//	if(isUpdate) {
-			//	    instance.registerTriggerChangedState(oldRecordsMap);
+			//		instance.registerTriggerChangedState(oldRecordsMap);
 			//  }
 
 			// Invoke the applicable handler
@@ -110,7 +110,7 @@ public abstract inherited sharing class aef_ApplicationDomainTriggerHandler {
 		// commit the unit of work for the current trigger run
 		// the unit of work will take all the queued operations and commit them to the database
 		// NOTE: During the execution, domains/modules can explicitly cause an exception to be thrown if needed (using throwOnError parameter of the register* methods in uow)
-		//          If throwOnException is not set, any database errors will be logged in Application_Log__c
+		//		  If throwOnException is not set, any database errors will be logged in Application_Log__c
 		// NOTE: If an exception is thrown the entire operation will be rolled back and the user will be presented with an error on screen
 		unitOfWork.commitWork();
 

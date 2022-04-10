@@ -104,9 +104,9 @@ global virtual inherited sharing class aef_ApplicationUnitOfWork extends aef_App
 	 * Example of of how this is populated:
 	 * [Trigger - ContactTriger] -> [Register Worker in trigger UOW - MyWorker1] -> [Commit] -> [Execute Worker] = "Trigger: ContactTrigger"
 	 * [Trigger - ContactTriger] -> [Register Worker in trigger UOW - MyWorker1] -> [Commit] -> [Execute Worker] -> [Trigger - AccountTrigger] -> [Register Worker in trigger UOW - MyWorker2] -> [Commit] -> [Execute Worker]
-	 *              = Trigger: ContactTrigger
-	 *                Worker: MyWorker1
-	 *                Trigger: AccountTrigger
+	 *			  = Trigger: ContactTrigger
+	 *				Worker: MyWorker1
+	 *				Trigger: AccountTrigger
 	 */
 	public static List<String> currentAsyncStack {
 		get {
@@ -169,7 +169,7 @@ global virtual inherited sharing class aef_ApplicationUnitOfWork extends aef_App
 		// make sure the the params serialise into less than 110k
 		// if any of the objects in the params are references to SObjects, the resolve relationships calls in UOW should populate their corresponding field ids which could increase the size of the payload...
 		// TODO... The performance impacts here would most likely be significant...
-		//         This should possibly be removed and a failure should be logged in the asynchronous context
+		//		 This should possibly be removed and a failure should be logged in the asynchronous context
 		//		if(stagedWorker.params != null && JSON.serialize(stagedWorker.params).length() > MAX_ASYNC_WORKER_PARAMETER_FIELD_SIZE) {
 		//			throw new AsyncUnitOfWorkException('Can not register async worker. Parameter size exceeds allowed limit');
 		//		}

@@ -8,7 +8,7 @@
  * @changelog
  */
 @IsTest
-public class aef_ApplicationTestDomain1_Test extends aef_ApplicationDomain implements IHasClassType {
+public class aef_ApplicationTestDomain1_Test extends aef_ApplicationDomain {
 
 	// used to report back from the module which records where changed
 	public static Map<Id, Set<SObjectField>> moduleBeforeUpdateChangedValues;
@@ -27,10 +27,6 @@ public class aef_ApplicationTestDomain1_Test extends aef_ApplicationDomain imple
 	public override void registerModules() {
 		registerModule(aef_ApplicationTestDomainModuleAll_Test.class);
 		registerModule(aef_ApplicationTestDomainModuleNone_Test.class);
-	}
-
-	public Type getClassType() {
-		return aef_ApplicationTestDomain1_Test.class;
 	}
 
 	public override List<SObject> filter(List<SObject> records) {

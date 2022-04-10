@@ -301,18 +301,18 @@ public virtual inherited sharing class aef_ApplicationUnitOfWorkBase {
 	}
 
 	//	/**
-	//     * Registers a relationship between a record and a lookup value using an external ID field and a provided value. This
-	//     * information will be used during the commitWork phase to make the lookup reference requested when inserted to the database.
-	//     *
-	//     * @param record An existing or newly created record
-	//     * @param relatedToField A SObjectField reference to the lookup field that relates the two records together
-	//     * @param externalIdField A SObjectField reference to a field on the target SObject that is marked as isExternalId
-	//     * @param externalId A Object representing the targetted value of the externalIdField in said lookup
-	//     *
-	//     * Usage Example: uow.registerRelationship(recordSObject, record_sobject__c.relationship_field__c, lookup_sobject__c.external_id__c, 'abc123');
-	//     *
-	//     * Wraps putSObject, creating a new instance of the lookup sobject using the external id field and value.
-	//     */
+	//	 * Registers a relationship between a record and a lookup value using an external ID field and a provided value. This
+	//	 * information will be used during the commitWork phase to make the lookup reference requested when inserted to the database.
+	//	 *
+	//	 * @param record An existing or newly created record
+	//	 * @param relatedToField A SObjectField reference to the lookup field that relates the two records together
+	//	 * @param externalIdField A SObjectField reference to a field on the target SObject that is marked as isExternalId
+	//	 * @param externalId A Object representing the targetted value of the externalIdField in said lookup
+	//	 *
+	//	 * Usage Example: uow.registerRelationship(recordSObject, record_sobject__c.relationship_field__c, lookup_sobject__c.external_id__c, 'abc123');
+	//	 *
+	//	 * Wraps putSObject, creating a new instance of the lookup sobject using the external id field and value.
+	//	 */
 	//	public void registerRelationship(SObject record, Schema.SObjectField relatedToField, Schema.SObjectField externalIdField, Object externalId)
 	//	{
 	//		// NOTE: Due to the lack of ExternalID references on Standard Objects, this method can not be provided a standardized Unit Test. - Rick Parker
@@ -708,7 +708,7 @@ public virtual inherited sharing class aef_ApplicationUnitOfWorkBase {
 			// in the event where a record was marked to throw an exception,
 			// a UnitOfWorkDatabaseException will be generated and thrown
 			// even though we are throwing an exception after the rollback, we still rollback as we dont know where commitWork was called from...
-			//          perhaps the caller itself is catching exceptions
+			//		  perhaps the caller itself is catching exceptions
 			Database.rollback(sp);
 			throw e;
 		} finally {
@@ -956,42 +956,42 @@ public virtual inherited sharing class aef_ApplicationUnitOfWorkBase {
 		}
 
 
-		//        public void add(SObject record, Schema.SObjectField relatedToField, Schema.SObjectField externalIdField, Object externalId)
-		//        {
-		//            if (relatedToField == null) {
-		//                throw new UnitOfWorkException('Invalid argument: relatedToField.');
-		//            }
+		//		public void add(SObject record, Schema.SObjectField relatedToField, Schema.SObjectField externalIdField, Object externalId)
+		//		{
+		//			if (relatedToField == null) {
+		//				throw new UnitOfWorkException('Invalid argument: relatedToField.');
+		//			}
 		//
-		//            String relationshipName = relatedToField.getDescribe().getRelationshipName();
-		//            if (String.isBlank(relationshipName)) {
-		//                throw new UnitOfWorkException('Invalid argument: relatedToField. Field supplied is not a relationship field.');
-		//            }
+		//			String relationshipName = relatedToField.getDescribe().getRelationshipName();
+		//			if (String.isBlank(relationshipName)) {
+		//				throw new UnitOfWorkException('Invalid argument: relatedToField. Field supplied is not a relationship field.');
+		//			}
 		//
-		//            List<Schema.SObjectType> relatedObjects = relatedToField.getDescribe().getReferenceTo();
-		//            Schema.SObjectType relatedObject = relatedObjects[0];
+		//			List<Schema.SObjectType> relatedObjects = relatedToField.getDescribe().getReferenceTo();
+		//			Schema.SObjectType relatedObject = relatedObjects[0];
 		//
-		//	        // Removing validation checking to prevent the need to use describe
-		//			//            String externalIdFieldName = String.valueOf(externalIdField);
-		//			//            Boolean relatedHasExternalIdField = relatedObject.getDescribe().fields.getMap().keySet().contains(externalIdFieldName.toLowerCase());
-		//			//            Boolean externalIdFieldIsValid = externalIdField.getDescribe().isExternalId();
+		//			// Removing validation checking to prevent the need to use describe
+		//			//			String externalIdFieldName = String.valueOf(externalIdField);
+		//			//			Boolean relatedHasExternalIdField = relatedObject.getDescribe().fields.getMap().keySet().contains(externalIdFieldName.toLowerCase());
+		//			//			Boolean externalIdFieldIsValid = externalIdField.getDescribe().isExternalId();
 		//			//
-		//			//            if (!relatedHasExternalIdField) {
-		//			//                throw new UnitOfWorkException('Invalid argument: externalIdField. Field supplied is not a known field on the target sObject.');
-		//			//            }
+		//			//			if (!relatedHasExternalIdField) {
+		//			//				throw new UnitOfWorkException('Invalid argument: externalIdField. Field supplied is not a known field on the target sObject.');
+		//			//			}
 		//			//
-		//			//            if (!externalIdFieldIsValid) {
-		//			//                throw new UnitOfWorkException('Invalid argument: externalIdField. Field supplied is not a marked as an External Identifier.');
-		//			//            }
+		//			//			if (!externalIdFieldIsValid) {
+		//			//				throw new UnitOfWorkException('Invalid argument: externalIdField. Field supplied is not a marked as an External Identifier.');
+		//			//			}
 		//
-		//            RelationshipByExternalId relationship = new RelationshipByExternalId();
-		//            relationship.Record = record;
-		//            relationship.RelatedToField = relatedToField;
-		//            relationship.RelatedTo = relatedObject;
-		//            relationship.RelationshipName = relationshipName;
-		//            relationship.ExternalIdField = externalIdField;
-		//            relationship.ExternalId = externalId;
-		//            m_relationships.add(relationship);
-		//        }
+		//			RelationshipByExternalId relationship = new RelationshipByExternalId();
+		//			relationship.Record = record;
+		//			relationship.RelatedToField = relatedToField;
+		//			relationship.RelatedTo = relatedObject;
+		//			relationship.RelationshipName = relationshipName;
+		//			relationship.ExternalIdField = externalIdField;
+		//			relationship.ExternalId = externalId;
+		//			m_relationships.add(relationship);
+		//		}
 
 		public void add(SObject record, Schema.SObjectField relatedToField, SObject relatedTo) {
 			// Relationship to resolve

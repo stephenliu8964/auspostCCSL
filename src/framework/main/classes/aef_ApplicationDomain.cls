@@ -73,16 +73,24 @@ public virtual inherited sharing class aef_ApplicationDomain {
 
 	/**
 	 * Grab the name of the class for various actions. Since Apex does not provide class Reflection then it's necessary to use this in order to know what the name of the most subclassed class is.
-	 * Domains should implement IHasClassType, but if they don't, the fallback is to use this method
+	 * In tests, using String.valueOf(this).substringBefore(':') consistently return results of 1-4ms which, in my opinion, is an acceptable overhead
+	 *
+	 * Test for this
+	 * aef_Application.Profiler.start('this');
+	 * for(Integer i = 0;i<5000;i++) {
+	 *	  aef_ApplicationUnitOfWorkAsyncHandler d = new aef_ApplicationUnitOfWorkAsyncHandler();
+	 *	  String classNameD = String.valueOf(d).substringBefore(':');
+	 *	  aef_ApplicationUnitOfWorkBase c = new aef_ApplicationUnitOfWorkBase();
+	 *	  String classNameC = String.valueOf(c).substringBefore(':');
+	 *	  aef_QueryBuilder s = new aef_QueryBuilder();
+	 *	  String classNameS = String.valueOf(s).substringBefore(':');
+	 * }
+	 * System.assert(false, aef_Application.Profiler.stop('this'));
 	 */
 	public String className {
 		get {
 			if(String.isEmpty(className)) {
-				if(this instanceof IHasClassType) {
-					className = String.valueOf(((IHasClassType)(this)).getClassType());
-				} else {
-					className = String.valueOf(this).substringBefore(':');
-				}
+				className = String.valueOf(this).substringBefore(':');
 			}
 			return className;
 		}
@@ -181,7 +189,7 @@ public virtual inherited sharing class aef_ApplicationDomain {
 			// Construct the module
 			cachedModules.get(thisClass).put(moduleClass, newModuleInstance(moduleClass));
 
-//          // TODO -> Link domain (if needed)
+//			// TODO -> Link domain (if needed)
 //			// provide a link to the domain calling this module
 //			// this is incase the module needs to access the domain (for bypassing other modules for example)
 //			((IModule)cachedModules.get(thisClass).get(moduleClass)).setDomain(this);

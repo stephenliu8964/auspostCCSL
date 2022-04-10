@@ -183,10 +183,10 @@ public without sharing class aef_ApplicationLogger {
 	}
 
 	/**
-	  * @description       This method is used to insert aef_Log__c record if their Severity__c value is ERROR.
-	  * @param             exceptionLog the aef_Log__c record to be created
-	  * @return            void
-	  * @throws            NA
+	  * @description	   This method is used to insert aef_Log__c record if their Severity__c value is ERROR.
+	  * @param			 exceptionLog the aef_Log__c record to be created
+	  * @return			void
+	  * @throws			NA
 	  */
 	private void insertExceptions(List<aef_Log__c> exceptionLogs) {
 		if(!exceptionLogs.isEmpty()) {
@@ -196,16 +196,16 @@ public without sharing class aef_ApplicationLogger {
 
 
 	/**
-	  * @description       This method is used to build the aef_Log__c record to be inserted.
-	  * @param             excp the Exception object
-	  * @param             applicationName the aef_Application Name
-	  * @param             className the Class Name
-	  * @param             methodName the Method Name
-	  * @param             severity the LoggingLevel variable to determine the exception level
-	  * @param             exceptionName the String containing exception type
-	  * @param             triggerName the String containing Trigger Name
-	  * @return            aef_Log__c
-	  * @throws            NA
+	  * @description	   This method is used to build the aef_Log__c record to be inserted.
+	  * @param			 excp the Exception object
+	  * @param			 applicationName the aef_Application Name
+	  * @param			 className the Class Name
+	  * @param			 methodName the Method Name
+	  * @param			 severity the LoggingLevel variable to determine the exception level
+	  * @param			 exceptionName the String containing exception type
+	  * @param			 triggerName the String containing Trigger Name
+	  * @return			aef_Log__c
+	  * @throws			NA
 	  */
 	private aef_Log__c buildExceptionObject(ExceptionWrapper wrapper, String applicationName, String className, String methodName, LoggingLevel severity, String triggerName) {
 
@@ -231,15 +231,15 @@ public without sharing class aef_ApplicationLogger {
 	}
 
 	/**
-	  * @description       This method is used to build the aef_Log__c record to be inserted.
-	  * @param             message the message
-	  * @param             applicationName the aef_Application Name
-	  * @param             className the Class Name
-	  * @param             methodName the Method Name
-	  * @param             severity the LoggingLevel variable to determine the exception level
-	  * @param             triggerName the String containing Trigger Name (for unhandledException)
-	  * @return            aef_Log__c
-	  * @throws            NA
+	  * @description	   This method is used to build the aef_Log__c record to be inserted.
+	  * @param			 message the message
+	  * @param			 applicationName the aef_Application Name
+	  * @param			 className the Class Name
+	  * @param			 methodName the Method Name
+	  * @param			 severity the LoggingLevel variable to determine the exception level
+	  * @param			 triggerName the String containing Trigger Name (for unhandledException)
+	  * @return			aef_Log__c
+	  * @throws			NA
 	  */
 	private static aef_Log__c buildExceptionObject(String message, String additionalInfo, String applicationName, String className, String methodName, LoggingLevel severity, String triggerName) {
 
@@ -257,10 +257,10 @@ public without sharing class aef_ApplicationLogger {
 
 
 	/**
-	  * @description       This method is used to build the ExceptionDetail__c field value for aef_Log__c record to be inserted.
-	  * @param             excp the Exception object
-	  * @return            String
-	  * @throws            NA
+	  * @description	   This method is used to build the ExceptionDetail__c field value for aef_Log__c record to be inserted.
+	  * @param			 excp the Exception object
+	  * @return			String
+	  * @throws			NA
 	  */
 	private static String buildExceptionDetails(ExceptionWrapper wrapper) {
 		return wrapper.ex.getTypeName() + ': ' + wrapper.ex.getMessage() + '\n' + wrapper.ex.getStackTraceString();
@@ -268,11 +268,11 @@ public without sharing class aef_ApplicationLogger {
 
 
 	/**
-	  * @description       This method is used to build the error message for the aef_Log__c record to be inserted in case of Database.SaveResult or Database.DeleteResult operation.
-	  * @param             idVal the Id of the record throwing exception during Database.insert or Database.delete
-	  * @param             errorList the List of Database.Error Object records
-	  * @return            String
-	  * @throws            NA
+	  * @description	   This method is used to build the error message for the aef_Log__c record to be inserted in case of Database.SaveResult or Database.DeleteResult operation.
+	  * @param			 idVal the Id of the record throwing exception during Database.insert or Database.delete
+	  * @param			 errorList the List of Database.Error Object records
+	  * @return			String
+	  * @throws			NA
 	  */
 	private static String buildErrorMessageFromErrorList(Id idVal, List<Database.Error> errorList) {
 		String errorMessage = 'Record Id: ' + idVal + '\n';
