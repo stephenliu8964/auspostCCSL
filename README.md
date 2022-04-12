@@ -1,6 +1,8 @@
 # Salesforce Advanced Enterprise Framework
 
-Over my career as a Salesforce consultant, I have come to realise the need for a consistent, multi-domain, execution framework that is scalable and modular. Aspects of this framework are modelled and inspired by the various authors including FinancialForce.com, inc and the enterprise patterns documented by Martin Fowler and adapted for Salesforce by Andy Fawcett.
+Over my career as a Salesforce consultant, I have come to realise the need for a consistent, multi-domain, execution framework that is scalable and modular. 
+
+The need for consistency, maintainability and scalability (amongst other things) led me to build this framework which is a collection of my own enterprise principles in addition to thinking from other thought leaders in the industry! 
 
 This framework utilises enterprise patterns including:
 - Domains
