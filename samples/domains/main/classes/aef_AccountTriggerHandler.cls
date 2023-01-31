@@ -14,7 +14,8 @@ public inherited sharing class aef_AccountTriggerHandler extends aef_Application
 	public override List<Type> registerDomains() {
 		return new List<Type>{
 			aef_GovernmentAccountDomain.class,
-			aef_EnterpriseAccountDomain.class
+			aef_EnterpriseAccountDomain.class,
+			aef_AccountRegistrationDomain.class
 		};
 	}
 

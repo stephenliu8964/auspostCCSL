@@ -12,3 +12,4 @@ src-env-specific
 
 # LWC Jest
 **/__tests__/**
+**/profiles

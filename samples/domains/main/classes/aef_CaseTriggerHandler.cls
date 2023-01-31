@@ -13,7 +13,9 @@ public inherited sharing class aef_CaseTriggerHandler extends aef_ApplicationDom
 
 	public override List<Type> registerDomains() {
 		return new List<Type>{
-			aef_EnterpriseCasesDomain.class
+			aef_EnterpriseCasesDomain.class,
+			aef_OpenCaseDomain.class,
+			aef_ContactCaseDomain.class
 		};
 	}
 
@@ -27,7 +29,7 @@ public inherited sharing class aef_CaseTriggerHandler extends aef_ApplicationDom
 
 	public static List<SObjectType> getUnitOfWorkSObjectTypes() {
 		return new List<SObjectType>{
-			Case.SObjectType
+			Case.SObjectType,Account.SObjectType,Contact.SObjectType
 		};
 	}
 
